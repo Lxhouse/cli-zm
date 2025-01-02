@@ -12,11 +12,13 @@
   },
   "author": "",
   "license": "ISC",
+  "type": "module",
   "dependencies": {
     "@zmcli/init": "workspace:^",
     "@zmcli/utils": "workspace:^",
     "chalk": "^5.4.1",
     "commander": "^13.0.0",
+    "fs-extra": "^11.2.0",
     "import-local": "^3.2.0",
     "semver": "^7.6.3"
   }

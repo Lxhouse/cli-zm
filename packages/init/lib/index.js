@@ -1,5 +1,6 @@
-const Command = require('@zmcli/command');
-const { log } = require('@zmcli/utils');
+import Command from '@zmcli/command';
+import { log } from '@zmcli/utils';
+
 class InitCommand extends Command {
   get command() {
     return 'init [name]';
@@ -12,6 +13,11 @@ class InitCommand extends Command {
   }
   action([name, opts]) {
     log.verbose('init', { name, opts });
+    new Promise((resolve) => {
+      resolve();
+    }).then(() => {
+      throw new Error('promise 报错尝试');
+    });
   }
 }
 
@@ -19,4 +25,4 @@ function Init(instance) {
   return new InitCommand(instance);
 }
 
-module.exports = Init;
+export default Init;

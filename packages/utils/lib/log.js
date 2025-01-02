@@ -1,10 +1,11 @@
-const log = require('npmlog');
-const isDebug = require('./isDebug');
+import log from 'npmlog';
+import isDebug from './isDebug.js';
+
 if (isDebug()) {
   log.level = 'verbose';
 } else {
   log.level = 'info';
 }
 
-log.heading = 'zhemu';
-module.exports = log;
+log.heading = 'zhemu-cli';
+export default log;

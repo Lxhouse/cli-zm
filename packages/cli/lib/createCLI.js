@@ -15,7 +15,9 @@ const LOW_NODE_VERSION = '14.0.0';
 function checkNodeVersion() {
   log.verbose('node version', process.version);
   if (semvar.lt(process.version, LOW_NODE_VERSION)) {
-    throw new Error(chalk.red('需要安装 22.0.0 以上版本的Node.js'));
+    throw new Error(
+      chalk.red(`需要安装 ${LOW_NODE_VERSION} 以上版本的Node.js`)
+    );
   }
 }
 

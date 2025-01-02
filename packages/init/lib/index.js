@@ -13,11 +13,11 @@ class InitCommand extends Command {
   }
   action([name, opts]) {
     log.verbose('init', { name, opts });
-    new Promise((resolve) => {
-      resolve();
-    }).then(() => {
-      throw new Error('promise 报错尝试');
-    });
+    // new Promise((resolve) => {
+    //   resolve();
+    // }).then(() => {
+    //   throw new Error('promise 报错尝试');
+    // });
   }
 }
 

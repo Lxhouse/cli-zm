@@ -10,6 +10,7 @@ class Command {
     cmd.hook('preAction', () => {
       this.preAction();
     });
+
     cmd.hook('postAction', () => {
       this.postAction();
     });

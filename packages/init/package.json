@@ -12,6 +12,10 @@
   "type": "module",
   "dependencies": {
     "@zmcli/command": "workspace:^",
-    "@zmcli/utils": "workspace:^"
+    "@zmcli/utils": "workspace:^",
+    "execa": "^9.5.2",
+    "fs-extra": "^11.2.0",
+    "ora": "^8.1.1",
+    "path-exists": "^5.0.0"
   }
 }

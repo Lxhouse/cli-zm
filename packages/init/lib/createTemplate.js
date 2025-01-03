@@ -1,4 +1,6 @@
+import { homedir } from 'node:os';
 import { log, getLatestVersion, makeInput, makeList } from '@zmcli/utils';
+import path from 'node:path';
 const ADD_TYPE_PROJECT = 'project';
 const ADD_TYPE_PAGE = 'page';
 
@@ -17,10 +19,16 @@ const ADD_TEMPLATE = [
   },
 ];
 
+const TEMP_HOME = '/cli-zm';
+
 const ADD_TYPE = [
   { name: '项目', value: ADD_TYPE_PROJECT },
   { name: '页面', value: ADD_TYPE_PAGE },
 ];
+
+function makeTargetPath() {
+  return path.resolve(`${homedir()}/${TEMP_HOME}`, 'addTemplate');
+}
 function getAddType() {
   return makeList({
     choices: ADD_TYPE,
@@ -32,6 +40,13 @@ function getProjectName() {
   return makeInput({
     message: '请输入项目名称',
     defaultValue: '',
+    validate: (v) => {
+      if (v.length > 0) {
+        return true;
+      } else {
+        return '项目名称必须输入';
+      }
+    },
   });
 }
 function getProject() {
@@ -52,10 +67,12 @@ export default async function createTemplate(name, type) {
     const latestVersion = await getLatestVersion(selectTemplate.npmName);
     log.verbose('latestVersion', latestVersion);
     selectTemplate.version = latestVersion;
+    const targetPath = makeTargetPath();
     return {
       type: addType,
       name: projectName,
       template: selectTemplate,
+      targetPath,
     };
   }
 }

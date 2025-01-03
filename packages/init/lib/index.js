@@ -11,7 +11,10 @@ class InitCommand extends Command {
     return '初始化命令';
   }
   get options() {
-    return [['-f,--force', '是否强制初始化', false]];
+    return [
+      ['-f,--force', '是否强制初始化', false],
+      ['-t,--type <type>', '项目类型(project/page)'],
+    ];
   }
   async action([name, opts]) {
     log.verbose('init', { name, opts });

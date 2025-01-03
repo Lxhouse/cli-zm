@@ -55,11 +55,17 @@ function getProject() {
     message: '请选择项目模板',
   });
 }
-export default async function createTemplate(name, type) {
+export default async function createTemplate(name, opt) {
+  const { type } = opt;
+  const addType = type;
   //获取创建类型
-  const addType = await getAddType();
+  if (!type) {
+    addType = await getAddType();
+  }
+  if (![ADD_TYPE_PROJECT, ADD_TYPE_PAGE].includes(addType)) {
+    throw new Error(`创建的项目类型 ${addType} 不支持`);
+  }
   log.verbose('addType', { addType });
-
   if (addType === ADD_TYPE_PROJECT) {
     const projectName = await getProjectName();
     const addTemplate = await getProject();

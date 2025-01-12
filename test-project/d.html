@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Custom Event Example</title>
+  </head>
+  <body>
+    <button id="btn">Click me</button>
+
+    <script>
+      const button = document.getElementById('btn');
+
+      // 创建一个自定义事件
+      const myEvent = new CustomEvent('myClickEvent', {
+        detail: {
+          message: 'Hello from custom event!',
+          timestamp: Date.now(),
+        },
+      });
+
+      // 监听自定义事件
+      button.addEventListener('myClickEvent', function (e) {
+        console.log('Custom event triggered!');
+        console.log('Message:', e.detail.message);
+        console.log('Timestamp:', e.detail.timestamp);
+      });
+
+      // 触发自定义事件
+      button.addEventListener('click', function () {
+        button.dispatchEvent(myEvent);
+      });
+    </script>
+  </body>
+</html>

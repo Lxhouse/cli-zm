@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <style>
+    canvas {
+      width: 256px;
+      height: 256px;
+      background-color: #eee;
+    }
+  </style>
+  <body>
+    <canvas width="512" height="512"></canvas>
+  </body>
+  <script>
+    const cv = document.querySelector('canvas');
+    const context = cv.getContext('2d');
+
+    const reSize = [100, 100];
+    context.fillStyle = 'red';
+    context.save();
+
+    context.translate(-0.5 * reSize[0], -0.5 * reSize[1]);
+    context.beginPath();
+    context.rect(cv.width / 2, cv.height / 2, ...reSize);
+    context.fill();
+
+    context.restore();
+  </script>
+</html>
